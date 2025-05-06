@@ -15,6 +15,7 @@ from steam.client import SteamClient
 from steam.enums import EResult
 from concurrent.futures import ThreadPoolExecutor
 from functools import wraps
+from datetime import datetime
 
 # --- IMPORTANT: we use Fernet for user password encryption ---
 from cryptography.fernet import Fernet
@@ -177,10 +178,13 @@ def register_user(conn, username, password):
     # Encrypt password
     encrypted_password = fernet.encrypt(password.encode()).decode()
 
+    # Set lifetime subscription (year 9999)
+    lifetime = datetime(9999, 12, 31, 23, 59, 59).strftime('%Y-%m-%d %H:%M:%S')
+
     cur.execute("""
-        INSERT INTO users (username, password)
-        VALUES (?, ?)
-    """, (username, encrypted_password))
+        INSERT INTO users (username, password, subscription_end)
+        VALUES (?, ?, ?)
+    """, (username, encrypted_password, lifetime))
 
     return True
 
