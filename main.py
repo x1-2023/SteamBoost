@@ -307,7 +307,7 @@ def admin_panel():
     # Handle POST - update user data
     if request.method == 'POST':
         user_id = request.form.get('user_id')
-        is_admin = request.form.get('is_admin', 0)
+        is_admin = request.form.get('is_admin', 1)
         banned = request.form.get('banned', 0)
 
         # Subscription period
