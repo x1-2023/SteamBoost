@@ -29,7 +29,7 @@ This project is a platform for managing multiple Steam accounts with the ability
 ## 🛠 Installation
 
 ```bash
-git clone https://github.com/Jacksony100/SteamHourBooster.git
+git clone https://github.com/x1-2023/SteamBoost.git
 cd steam-farming-platform
 python3 -m venv venv
 source venv/bin/activate
